@@ -88,4 +88,4 @@ GitHub Pages redeploys automatically within a minute of the push.
   IndiaMART catalogue
 
 Update the phone number, address, and any prices if they change — they're
-currently pulled from the public IndiaMART listing and may go stale.
+currently pulled from the public IndiaMART listing.

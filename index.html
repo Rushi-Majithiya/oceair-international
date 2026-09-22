@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oceair International Private Limited | PVC Resin &amp; Regrind Supplier, Ahmedabad</title>
+<meta name="description" content="Oceair International Private Limited — Ahmedabad-based trader and wholesale distributor of PVC Resin, PVC Regrind, PVC Pulverized, Polyethylene Wax and Titanium Dioxide. 8 years in the trade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#141B19;
+    --paper:#EFEDE4;
+    --paper-2:#E4E1D4;
+    --teal:#1F5C52;
+    --teal-dark:#153F38;
+    --amber:#D6862F;
+    --steel:#6B7570;
+    --line: rgba(20,27,25,0.14);
+    --max: 1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", Arial, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.eyebrow-num{
+    font-family:"Archivo", Arial, sans-serif;
+    margin:0;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+  .section{padding:88px 0;}
+  .section-tight{padding:56px 0;}
+  .divider{border:none; border-top:1px solid var(--line); margin:0;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(239,237,228,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:var(--max); margin:0 auto; padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:"Archivo", Arial, sans-serif;
+    font-weight:800; font-size:18px; letter-spacing:-0.01em;
+    text-decoration:none; color:var(--ink);
+  }
+  .brand-mark{
+    width:34px; height:34px; border-radius:50%;
+    background:var(--teal);
+    position:relative; flex-shrink:0;
+  }
+  .brand-mark::before, .brand-mark::after{
+    content:""; position:absolute; border-radius:50%; background:var(--amber);
+  }
+  .brand-mark::before{ width:8px; height:8px; top:7px; left:7px; }
+  .brand-mark::after{ width:6px; height:6px; bottom:7px; right:8px; background:var(--paper);}
+  .navlinks{display:flex; gap:32px; font-size:15px; font-weight:500;}
+  .navlinks a{text-decoration:none; color:var(--ink); opacity:0.75; transition:opacity .15s;}
+  .navlinks a:hover{opacity:1;}
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--ink); color:var(--paper);
+    padding:10px 18px; border-radius:2px; font-weight:600; font-size:14px;
+    text-decoration:none; white-space:nowrap;
+  }
+  .menu-btn{display:none; background:none; border:none; cursor:pointer; padding:4px;}
+  .menu-btn span{display:block; width:22px; height:2px; background:var(--ink); margin:5px 0;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:var(--ink); color:var(--paper);
+    position:relative; overflow:hidden;
+    padding:96px 0 80px;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: radial-gradient(rgba(214,134,47,0.55) 1.6px, transparent 1.6px);
+    background-size: 26px 26px;
+    opacity:0.14;
+    mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
+  }
+  .hero-inner{position:relative; max-width:var(--max); margin:0 auto; padding:0 24px;}
+  .hero-tag{
+    font-size:14px; font-weight:600; color:var(--amber);
+    letter-spacing:0.01em; margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(34px, 5.4vw, 58px);
+    font-weight:800; line-height:1.06; letter-spacing:-0.02em;
+    max-width:15ch; color:#FBFAF6;
+  }
+  .hero p.lead{
+    margin-top:22px; font-size:18px; max-width:52ch; color:rgba(251,250,246,0.8);
+  }
+  .hero-actions{display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 24px; border-radius:2px; font-weight:600; font-size:15px;
+    text-decoration:none; border:1px solid transparent; cursor:pointer;
+  }
+  .btn-primary{background:var(--amber); color:var(--ink);}
+  .btn-primary:hover{background:#c3781f;}
+  .btn-outline{border-color:rgba(251,250,246,0.35); color:#FBFAF6;}
+  .btn-outline:hover{border-color:#FBFAF6;}
+  .hero-stats{
+    margin-top:64px; display:grid; grid-template-columns:repeat(4,1fr);
+    border-top:1px solid rgba(251,250,246,0.18); padding-top:28px; gap:20px;
+  }
+  .stat-num{font-family:"Archivo",sans-serif; font-weight:800; font-size:30px; color:#FBFAF6;}
+  .stat-label{font-size:13px; color:rgba(251,250,246,0.65); margin-top:4px;}
+
+  /* ---------- Section headings ---------- */
+  .kicker{
+    font-size:14px; font-weight:600; color:var(--teal); margin-bottom:12px;
+  }
+  .section h2{
+    font-size:clamp(26px, 3.4vw, 38px); font-weight:800; letter-spacing:-0.015em; max-width:20ch;
+  }
+  .section .desc{margin-top:16px; max-width:60ch; color:var(--steel); font-size:16.5px;}
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; margin-top:48px; align-items:start;
+  }
+  .about-grid .desc{margin-top:0;}
+  .about-points{list-style:none; margin:28px 0 0; padding:0; display:grid; gap:18px;}
+  .about-points li{
+    display:flex; gap:14px; font-size:15.5px; color:var(--ink);
+  }
+  .about-points .dot{
+    flex-shrink:0; width:9px; height:9px; border-radius:50%; background:var(--amber); margin-top:7px;
+  }
+  .credential-box{
+    border:1px solid var(--line); padding:28px; background:var(--paper-2);
+  }
+  .credential-box h3{font-size:16px; font-weight:700; margin-bottom:18px;}
+  .credential-row{
+    display:flex; justify-content:space-between; padding:12px 0; border-top:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .credential-row:first-of-type{border-top:none;}
+  .credential-row span:first-child{color:var(--steel);}
+  .credential-row span:last-child{font-weight:600; text-align:right;}
+
+  /* ---------- Products ---------- */
+  .product-grid{
+    margin-top:48px; display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .product-card{background:var(--paper); padding:30px 26px;}
+  .product-card .cat-count{font-size:13px; color:var(--teal); font-weight:600;}
+  .product-card h3{font-size:19px; font-weight:700; margin-top:8px;}
+  .product-card p{font-size:14.5px; color:var(--steel); margin-top:10px; min-height:44px;}
+  .product-card .price-from{
+    margin-top:18px; font-size:13.5px; color:var(--ink); font-weight:600;
+    border-top:1px solid var(--line); padding-top:14px;
+  }
+  .product-card .price-from em{
+    font-style:normal; color:var(--steel); font-weight:400;
+  }
+
+  /* ---------- Why us ---------- */
+  .why-band{background:var(--teal-dark); color:var(--paper);}
+  .why-grid{
+    margin-top:48px; display:grid; grid-template-columns:repeat(4,1fr); gap:36px;
+  }
+  .why-band .kicker{color:var(--amber);}
+  .why-band h2{color:#FBFAF6;}
+  .why-item h3{font-size:17px; font-weight:700; color:#FBFAF6;}
+  .why-item p{font-size:14.5px; color:rgba(239,237,228,0.72); margin-top:8px;}
+  .why-item .why-num{
+    font-family:"Archivo",sans-serif; font-weight:800; font-size:26px; color:var(--amber); margin-bottom:10px;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-grid{
+    margin-top:48px; display:grid; grid-template-columns:1fr 1fr; gap:64px;
+  }
+  .contact-card{border:1px solid var(--line); padding:32px;}
+  .contact-card h3{font-size:15px; font-weight:700; text-transform:none; margin-bottom:6px;}
+  .contact-card .big{font-size:22px; font-weight:700; margin-top:4px;}
+  .contact-actions{display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;}
+  .contact-list{list-style:none; margin:0; padding:0; display:grid; gap:22px;}
+  .contact-list li{display:flex; gap:16px;}
+  .contact-list .label{font-size:13px; color:var(--steel); min-width:110px;}
+  .contact-list .value{font-weight:600; font-size:15.5px;}
+
+  footer{border-top:1px solid var(--line); padding:36px 0; font-size:13.5px; color:var(--steel);}
+  .foot-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+
+  @media (max-width: 860px){
+    .navlinks{display:none;}
+    .nav-cta{display:none;}
+    .menu-btn{display:block;}
+    .hero-stats{grid-template-columns:repeat(2,1fr); row-gap:24px;}
+    .about-grid{grid-template-columns:1fr; gap:32px;}
+    .product-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr 1fr; row-gap:32px;}
+    .contact-grid{grid-template-columns:1fr; gap:36px;}
+    .section{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#top">
+      <span class="brand-mark"></span>
+      OCEAIR INTERNATIONAL
+    </a>
+    <nav class="navlinks">
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="tel:+918043831918">Call +91 80438 31918</a>
+    <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('mnav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mnav" style="display:none; border-top:1px solid var(--line); padding:16px 24px;">
+    <div style="display:grid; gap:14px; font-weight:600;">
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact">Contact</a>
+      <a href="tel:+918043831918">Call +91 80438 31918</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-tag">PVC RESIN &amp; REGRIND · WHOLESALE TRADING · AHMEDABAD</div>
+    <h1>Raw material supply built on 8 years of trade relationships.</h1>
+    <p class="lead">Oceair International Private Limited sources and supplies PVC Resin, PVC Regrind, PVC Pulverized Powder, Polyethylene Wax and Titanium Dioxide to pipe, fitting and profile manufacturers across India.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://wa.me/918043831918" target="_blank" rel="noopener">WhatsApp for a quote</a>
+      <a class="btn btn-outline" href="tel:+918043831918">Call +91 80438 31918</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">8 yrs</div>
+        <div class="stat-label">In the PVC trade</div>
+      </div>
+      <div>
+        <div class="stat-num">5.0★</div>
+        <div class="stat-label">Buyer rating, 10 reviews</div>
+      </div>
+      <div>
+        <div class="stat-num">86%</div>
+        <div class="stat-label">Enquiry response rate</div>
+      </div>
+      <div>
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Product categories stocked</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="kicker">ABOUT THE COMPANY</div>
+        <h2>A wholesale trading partner for PVC processors.</h2>
+        <p class="desc">Oceair International Private Limited is a Wholesale Trader and Distributor of PVC Resin, PVC Regrind and related polymer materials, based in Ahmedabad, Gujarat. The company sources both prime and off-grade PVC resin, along with regrind, pulverized powder and pipe scrap, for buyers manufacturing pipes, fittings and PVC profiles.</p>
+        <ul class="about-points">
+          <li><span class="dot"></span> Sources from established international and domestic PVC producers, including material graded for pipe and general-purpose use.</li>
+          <li><span class="dot"></span> Stocks PVC Regrind and Pulverized Powder in grey, white and mixed-colour grades for cost-sensitive production runs.</li>
+          <li><span class="dot"></span> Also supplies Polyethylene Wax and Titanium Dioxide (Rutile) used as processing aids and pigments in plastics manufacturing.</li>
+          <li><span class="dot"></span> Led by Director K. Thakkar, with day-to-day enquiries handled directly by phone and WhatsApp.</li>
+        </ul>
+      </div>
+      <div class="credential-box">
+        <h3>Company snapshot</h3>
+        <div class="credential-row"><span>Legal name</span><span>Oceair International Pvt. Ltd.</span></div>
+        <div class="credential-row"><span>Nature of business</span><span>Trader / Wholesaler / Distributor</span></div>
+        <div class="credential-row"><span>Location</span><span>Ahmedabad, Gujarat, India</span></div>
+        <div class="credential-row"><span>Years in trade</span><span>8 years</span></div>
+        <div class="credential-row"><span>Director</span><span>K. Thakkar</span></div>
+        <div class="credential-row"><span>Buyer rating</span><span>5.0 / 5 (10 reviews)</span></div>
+        <div class="credential-row"><span>GST status</span><span>Registered</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="products">
+  <div class="wrap">
+    <div class="kicker">WHAT WE SUPPLY</div>
+    <h2>Six product lines, stocked for repeat orders.</h2>
+    <p class="desc">Indicative prices below are a starting reference only — actual rates move with international resin prices and order quantity. Call or WhatsApp for a current quote.</p>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="cat-count">27 PRODUCTS</div>
+        <h3>PVC Resin</h3>
+        <p>Near-prime and off-grade suspension PVC resin, pipe-grade, K-value 65–68.</p>
+        <div class="price-from">From ₹65/kg <em>— Pvc Resin Near Prime</em></div>
+      </div>
+      <div class="product-card">
+        <div class="cat-count">8 PRODUCTS</div>
+        <h3>PVC Resin (Poly Vinyl Chloride)</h3>
+        <p>Branded resin from East Hope, Formosa, Hygain, Zhongtai and other producers.</p>
+        <div class="price-from">From ₹68/kg <em>— East Hope SG5</em></div>
+      </div>
+      <div class="product-card">
+        <div class="cat-count">7 PRODUCTS</div>
+        <h3>PVC Regrind</h3>
+        <p>Grey, white and natural regrind from clean industrial PVC pipe scrap.</p>
+        <div class="price-from">From ₹50/kg <em>— Grey PVC Regrind, Japan</em></div>
+      </div>
+      <div class="product-card">
+        <div class="cat-count">5 PRODUCTS</div>
+        <h3>PVC Pulverized Powder</h3>
+        <p>Ground PVC powder in white, grey and mixed-colour grades.</p>
+        <div class="price-from">From ₹42/kg <em>— Mix Colour Pulverized</em></div>
+      </div>
+      <div class="product-card">
+        <div class="cat-count">2 PRODUCTS</div>
+        <h3>PVC Pipe Scrap</h3>
+        <p>Fitting regrind and white PVC scrap sourced from pipe manufacturing.</p>
+        <div class="price-from">From ₹55/kg <em>— PVC Fitting Regrind</em></div>
+      </div>
+      <div class="product-card">
+        <div class="cat-count">POLYMER ADDITIVES</div>
+        <h3>Wax &amp; Titanium Dioxide</h3>
+        <p>Polyethylene wax and rutile titanium dioxide for plastics processing and pigmentation.</p>
+        <div class="price-from">From ₹115/kg <em>— Paraffin &amp; PE Wax</em></div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <a class="btn btn-outline" style="border-color:var(--line); color:var(--ink);" href="https://m.indiamart.com/oceair-international/products.html" target="_blank" rel="noopener">View full catalogue on IndiaMART →</a>
+    </div>
+  </div>
+</section>
+
+<section class="why-band section" id="why">
+  <div class="wrap">
+    <div class="kicker">WHY BUYERS COME BACK</div>
+    <h2>Built for manufacturers who reorder every month.</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <h3>Consistent grading</h3>
+        <p>K-value and grade specified against every resin lot, so it drops into your existing process without retesting.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <h3>Regrind at scale</h3>
+        <p>Regular volumes of colour-sorted regrind and pulverized powder, packed to the size you order.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <h3>Direct line to the director</h3>
+        <p>Enquiries are answered by the person who sources the material, not a call centre — 86% response rate.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">04</div>
+        <h3>Payment-protected orders</h3>
+        <p>Transactions are covered under IndiaMART's TrustSEAL and Payment Protection programme.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="kicker">GET IN TOUCH</div>
+    <h2>Send your requirement, get a quote same day.</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Fastest response</h3>
+        <div class="big">+91 80438 31918</div>
+        <p style="color:var(--steel); font-size:14.5px; margin-top:6px;">Speak to Director K. Thakkar directly for pricing, grade specs and lot availability.</p>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="https://wa.me/918043831918" target="_blank" rel="noopener">Message on WhatsApp</a>
+          <a class="btn btn-outline" style="border-color:var(--line); color:var(--ink);" href="tel:+918043831918">Call now</a>
+        </div>
+      </div>
+      <ul class="contact-list">
+        <li>
+          <span class="label">Company</span>
+          <span class="value">Oceair International Private Limited</span>
+        </li>
+        <li>
+          <span class="label">Address</span>
+          <span class="value">Ahmedabad, Gujarat, India</span>
+        </li>
+        <li>
+          <span class="label">Enquiries</span>
+          <span class="value">Phone &amp; WhatsApp: +91 80438 31918</span>
+        </li>
+        <li>
+          <span class="label">IndiaMART</span>
+          <span class="value"><a href="https://m.indiamart.com/oceair-international/" target="_blank" rel="noopener" style="color:var(--teal);">m.indiamart.com/oceair-international</a></span>
+        </li>
+        <li>
+          <span class="label">Reviews</span>
+          <span class="value">5.0★ from 10 verified buyers</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>© <span id="yr"></span> Oceair International Private Limited. Ahmedabad, Gujarat, India.</span>
+    <span>PVC Resin · PVC Regrind · Polyethylene Wax · Titanium Dioxide</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

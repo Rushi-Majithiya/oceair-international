@@ -14,6 +14,7 @@ missing/broken email setup never blocks a real customer's submission.
 
 import os
 import smtplib
+import socket
 from email.message import EmailMessage
 
 GMAIL_ADDRESS = os.environ.get("GMAIL_ADDRESS")
@@ -27,6 +28,20 @@ SMTP_PORT = 587
 def mail_is_configured() -> bool:
     return bool(GMAIL_ADDRESS and GMAIL_APP_PASSWORD and ALERT_TO_EMAIL)
 
+def _connect_ipv4_smtp(host: str, port: int, timeout: float = 10.0) -> smtplib.SMTP:
+    """Connect to SMTP forcing IPv4 to prevent [Errno 101] Network is unreachable on Render."""
+    res = socket.getaddrinfo(host, port, socket.AF_INET, socket.SOCK_STREAM)
+    if not res:
+        raise OSError(f"Could not resolve IPv4 address for {host}")
+
+    af, socktype, proto, canonname, sa = res[0]
+    sock = socket.socket(af, socktype, proto)
+    sock.settimeout(timeout)
+    sock.connect(sa)
+
+    smtp = smtplib.SMTP(timeout=timeout)
+    smtp.connect(host, port, sock=sock)
+    return smtp
 
 def send_quote_alert(entry: dict) -> bool:
     """

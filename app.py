@@ -13,7 +13,7 @@ A small Flask app that:
 from datetime import datetime, timezone
 from pathlib import Path
 import json
-# import os
+import os
 
 import dotenv
     
@@ -25,7 +25,7 @@ from data.products import PRODUCT_CATEGORIES, COMPANY, STATS, PROCESS_STEPS, FAQ
 from mailer import send_quote_alert
 
 app = Flask(__name__)
-app.secret_key = dotenv.get_key(".env", "FLASK_KEY")  # used only to sign the flash-message cookie
+app.secret_key = os.environ.get("FLASK_KEY", "36574e32e5de26fa89ce8516662a13813b48617fcb681199131e752d65a40e41")  # used only to sign the flash-message cookie
 
 ENQUIRIES_FILE = Path(__file__).parent / "data" / "enquiries.json"
 

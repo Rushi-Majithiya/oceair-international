@@ -17,8 +17,8 @@ import smtplib
 import socket
 from email.message import EmailMessage
 
-GMAIL_ADDRESS = os.environ.get("GMAIL_ADDRESS")
-GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD")
+GMAIL_ADDRESS = os.environ.get("GMAIL_ADDRESS","rushigurukul@gmail.com")
+GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD","yrbygrtutappyqkd")
 ALERT_TO_EMAIL = os.environ.get("ALERT_TO_EMAIL", GMAIL_ADDRESS)
 
 SMTP_HOST = "smtp.gmail.com"

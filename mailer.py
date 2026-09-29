@@ -22,7 +22,8 @@ GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD","yrbygrtutappyqkd")
 ALERT_TO_EMAIL = os.environ.get("ALERT_TO_EMAIL", GMAIL_ADDRESS)
 
 SMTP_HOST = "smtp.gmail.com"
-SMTP_PORT = 587
+SMTP_PORT = 465 
+# 587
 
 
 def mail_is_configured() -> bool:
@@ -74,7 +75,7 @@ def send_quote_alert(entry: dict) -> bool:
     msg.set_content(body)
 
     try:
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=10) as server:
+        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, timeout=10) as server:
             server.starttls()
             server.login(GMAIL_ADDRESS, GMAIL_APP_PASSWORD)
             server.send_message(msg)

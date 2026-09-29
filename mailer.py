@@ -1,85 +1,127 @@
-"""
-Sends an email alert (via Gmail SMTP) every time a client submits the
-"Request a Quote" form.
-
-Configuration comes entirely from environment variables — no credentials
-are ever hardcoded here. See .env.example for what to set, and the README
-for how to generate a Gmail App Password.
-
-If the environment variables aren't set (e.g. while developing locally
-without email configured), sending is silently skipped and a note is
-printed to the console — the enquiry still gets saved either way, so a
-missing/broken email setup never blocks a real customer's submission.
-"""
-
 import os
-import smtplib
-import socket
-from email.message import EmailMessage
 
-GMAIL_ADDRESS = os.environ.get("GMAIL_ADDRESS","rushigurukul@gmail.com")
-GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD","yrbygrtutappyqkd")
-ALERT_TO_EMAIL = os.environ.get("ALERT_TO_EMAIL", GMAIL_ADDRESS)
+import resend
 
-SMTP_HOST = "smtp.gmail.com"
-SMTP_PORT = 465 
-# 587
+
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
+ALERT_TO_EMAIL = os.environ.get("ALERT_TO_EMAIL")
+MAIL_FROM = os.environ.get("MAIL_FROM", "Oceair International <onboarding@resend.dev>")
 
 
 def mail_is_configured() -> bool:
-    return bool(GMAIL_ADDRESS and GMAIL_APP_PASSWORD and ALERT_TO_EMAIL)
+    return bool(
+        RESEND_API_KEY
+        and ALERT_TO_EMAIL
+        and MAIL_FROM
+    )
 
-def _connect_ipv4_smtp(host: str, port: int, timeout: float = 10.0) -> smtplib.SMTP:
-    """Connect to SMTP forcing IPv4 to prevent [Errno 101] Network is unreachable on Render."""
-    res = socket.getaddrinfo(host, port, socket.AF_INET, socket.SOCK_STREAM)
-    if not res:
-        raise OSError(f"Could not resolve IPv4 address for {host}")
-
-    af, socktype, proto, canonname, sa = res[0]
-    sock = socket.socket(af, socktype, proto)
-    sock.settimeout(timeout)
-    sock.connect(sa)
-
-    smtp = smtplib.SMTP(timeout=timeout)
-    smtp.connect(host, port, sock=sock)
-    return smtp
 
 def send_quote_alert(entry: dict) -> bool:
     """
-    Emails ALERT_TO_EMAIL with the details of a new quote enquiry.
-    Returns True if the email was sent, False if it was skipped or failed
-    (failures are logged to the console, never raised — a broken mail
-    setup should never break the form for the visitor).
+    Sends an email alert when a new quote enquiry is submitted.
+
+    Returns True if the email was sent successfully.
+    Returns False if email configuration is missing or sending fails.
     """
+
     if not mail_is_configured():
-        print("[mailer] Gmail SMTP not configured — skipping email alert. "
-              "Set GMAIL_ADDRESS / GMAIL_APP_PASSWORD / ALERT_TO_EMAIL to enable it.")
+        print(
+            "[mailer] Resend email not configured — skipping email alert. "
+            "Set RESEND_API_KEY, ALERT_TO_EMAIL and MAIL_FROM."
+        )
         return False
 
-    msg = EmailMessage()
-    msg["Subject"] = f"New Product enquiry — {entry['product']} ({entry['name']})"
-    msg["From"] = GMAIL_ADDRESS
-    msg["To"] = ALERT_TO_EMAIL
-    msg["Reply-To"] = entry.get("phone", GMAIL_ADDRESS)
+    resend.api_key = RESEND_API_KEY
 
-    body = (
-        "New enquiry from the Oceair International website:\n\n"
-        f"Name:        {entry['name']}\n"
-        f"Phone:       {entry['phone']}\n"
-        f"Product:     {entry['product']}\n"
-        f"Quantity:    {entry.get('quantity') or '-'}\n"
-        f"Message:     {entry.get('message') or '-'}\n"
-        f"Submitted:   {entry['submitted_at']}\n\n"
-        f"Call or WhatsApp: {entry['phone']}\n"
+    subject = (
+        f"New Product enquiry — "
+        f"{entry.get('product', 'Unknown product')} "
+        f"({entry.get('name', 'Unknown name')})"
     )
-    msg.set_content(body)
+
+    phone = entry.get("phone", "-")
+    product = entry.get("product", "-")
+    quantity = entry.get("quantity") or "-"
+    message = entry.get("message") or "-"
+    submitted_at = entry.get("submitted_at", "-")
+
+    # Plain-text version
+    text_body = (
+        "New enquiry from the Oceair International website.\n\n"
+        f"Name:        {entry.get('name', '-')}\n"
+        f"Phone:       {phone}\n"
+        f"Product:     {product}\n"
+        f"Quantity:    {quantity}\n"
+        f"Message:     {message}\n"
+        f"Submitted:   {submitted_at}\n\n"
+        f"Call or WhatsApp: {phone}\n"
+    )
+
+    # HTML version
+    html_body = f"""
+    <html>
+        <body>
+            <h2>New Product Enquiry</h2>
+
+            <p>
+                A new enquiry was submitted from the
+                <strong>Oceair International</strong> website.
+            </p>
+
+            <table cellpadding="8" cellspacing="0" border="1">
+                <tr>
+                    <td><strong>Name</strong></td>
+                    <td>{entry.get('name', '-')}</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Phone</strong></td>
+                    <td>{phone}</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Product</strong></td>
+                    <td>{product}</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Quantity</strong></td>
+                    <td>{quantity}</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Message</strong></td>
+                    <td>{message}</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Submitted</strong></td>
+                    <td>{submitted_at}</td>
+                </tr>
+            </table>
+
+            <p>
+                <strong>Call or WhatsApp:</strong> {phone}
+            </p>
+        </body>
+    </html>
+    """
 
     try:
-        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, timeout=10) as server:
-            server.starttls()
-            server.login(GMAIL_ADDRESS, GMAIL_APP_PASSWORD)
-            server.send_message(msg)
+        params = {
+            "from": MAIL_FROM,
+            "to": [ALERT_TO_EMAIL],
+            "subject": subject,
+            "text": text_body,
+            "html": html_body,
+        }
+
+        email = resend.Emails.send(params)
+
+        print(f"[mailer] Quote alert email sent successfully: {email}")
+
         return True
-    except Exception as exc:  # noqa: BLE001 — we want to swallow *any* mail failure
+
+    except Exception as exc:
         print(f"[mailer] Failed to send quote alert email: {exc}")
         return False
